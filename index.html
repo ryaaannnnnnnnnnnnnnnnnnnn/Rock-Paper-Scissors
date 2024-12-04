@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Picker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .center-image {
+            display: block;
+            margin: 0 auto;
+            width: 150px; 
+            height: auto;
+        }
+        .textbox {
+            margin: 20px auto;
+            padding: 10px;
+            width: 300px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            background-color: orange;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color: darkorange;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pick a Button</h1>
+    <img src="img/sn-rockpaper.jpg" alt="Centered Image" class="center-image">
+    <input type="text" id="textbox" class="textbox" placeholder="You picked..." readonly>
+    <br>
+    <button class="button" onclick="updateTextbox('Rock')">Rock</button>
+    <button class="button" onclick="updateTextbox('Paper')">Paper</button>
+    <button class="button" onclick="updateTextbox('Scissors')">Scissors</button>
+
+    <script>
+        function updateTextbox(buttonLabel) {
+            const textbox = document.getElementById('textbox');
+            textbox.value = `You picked: ${buttonLabel}`;
+        }
+    </script>
+</body>
+</html>
