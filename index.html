@@ -9,6 +9,7 @@
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 20px;
+            background-color: palegreen; 
         }
         .center-image {
             display: block;
@@ -37,22 +38,55 @@
         .button:hover {
             background-color: darkorange;
         }
+        .results {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .results span {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-    <h1>Pick a Button</h1>
+    <h1>Rock Paper Scissors!</h1>
     <img src="img/sn-rockpaper.jpg" alt="Centered Image" class="center-image">
     <input type="text" id="textbox" class="textbox" placeholder="You picked..." readonly>
     <br>
-    <button class="button" onclick="updateTextbox('Rock')">Rock</button>
-    <button class="button" onclick="updateTextbox('Paper')">Paper</button>
-    <button class="button" onclick="updateTextbox('Scissors')">Scissors</button>
+    <button class="button" onclick="playGame('Rock')">Rock</button>
+    <button class="button" onclick="playGame('Paper')">Paper</button>
+    <button class="button" onclick="playGame('Scissors')">Scissors</button>
+
+    <div class="results">
+        <p id="user-choice">Your choice: <span>None</span></p>
+        <p id="computer-choice">Computer's choice: <span>None</span></p>
+        <p id="winner">Winner: <span>None</span></p>
+    </div>
 
     <script>
-        function updateTextbox(buttonLabel) {
-            const textbox = document.getElementById('textbox');
-            textbox.value = `You picked: ${buttonLabel}`;
+        function playGame(userChoice) {
+            const choices = ['Rock', 'Paper', 'Scissors'];
+            const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+            const result = document.getElementById('winner').querySelector('span');
+            
+            
+            document.getElementById('user-choice').querySelector('span').textContent = userChoice;
+            document.getElementById('computer-choice').querySelector('span').textContent = computerChoice;
+    
+            
+            if (userChoice === computerChoice) {
+                result.textContent = "It's a Tie!";
+            } else if (
+                (userChoice === 'Rock' && computerChoice === 'Scissors') ||
+                (userChoice === 'Paper' && computerChoice === 'Rock') ||
+                (userChoice === 'Scissors' && computerChoice === 'Paper')
+            ) {
+                result.textContent = "You Win!";
+            } else {
+                result.textContent = "Computer Wins!";
+            }
         }
+    </script>
+    
     </script>
 </body>
 </html>
